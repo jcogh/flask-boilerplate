@@ -35,10 +35,10 @@ your_project_name/
 
 ## Usage
 ```
-git clone https://github.com/yourusername/flask-boilerplate.git
+git clone https://github.com/jcogh/flask-boilerplate.git
 cd flask-boilerplate
 
-python initialize_project.py your_project_name
+python init.py your_project_name
 
 cd your_project_name
 
@@ -46,3 +46,6 @@ source venv/bin/activate  # On Windows: venv\Scripts\activate
 
 python run.py
 ```
+
+Open Browser and navigate to `http://127.0.0.1:5000/
+
