@@ -47,5 +47,5 @@ source venv/bin/activate  # On Windows: venv\Scripts\activate
 python run.py
 ```
 
-Open Browser and navigate to `http://127.0.0.1:5000/
+Open Browser and navigate to http://127.0.0.1:5000/
 

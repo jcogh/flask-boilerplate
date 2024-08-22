@@ -83,7 +83,7 @@ if __name__ == '__main__':
 body {
     font-family: Arial, sans-serif;
     margin: 0;
-    padding: 0;
+    padding: 0.
 }
 ''',
 
@@ -130,18 +130,23 @@ def create_project(project_name):
     print('Creating virtual environment...')
     subprocess.run([sys.executable, '-m', 'venv', str(venv_path)])
 
-    activate_script = venv_path / 'bin' / 'activate'
+    # Determine the correct path for the pip executable
+    pip_executable = venv_path / 'bin' / 'pip'
     if os.name == 'nt':  # Windows
-        activate_script = venv_path / 'Scripts' / 'activate.bat'
+        pip_executable = venv_path / 'Scripts' / 'pip.exe'
 
-    # Install dependencies
-    print('Installing dependencies...')
-    subprocess.run([str(venv_path / 'bin' / 'pip'), 'install', '-r', f'{project_name}/requirements.txt'])
+    # Install Flask and dependencies
+    print('Installing Flask and dependencies...')
+    subprocess.run([str(pip_executable), 'install', '-r', f'{project_name}/requirements.txt'])
 
     print(f'\nProject "{project_name}" has been created successfully!')
     print(f'To get started:')
-    print(f'1. Navigate to the project directory:\n   cd {project_name}')
-    print(f'2. Activate the virtual environment:\n   source {activate_script}')
+    if os.name == 'nt':
+        print(f'1. Navigate to the project directory:\n   cd {project_name}')
+        print(f'2. Activate the virtual environment:\n   {venv_path}\\Scripts\\activate')
+    else:
+        print(f'1. Navigate to the project directory:\n   cd {project_name}')
+        print(f'2. Activate the virtual environment:\n   source {venv_path}/bin/activate')
     print(f'3. Run the application:\n   python run.py')
 
 if __name__ == '__main__':
